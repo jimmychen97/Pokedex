@@ -12,8 +12,13 @@ let pokemonRepository = (function (){
   }
 
   // add a single item to pokemonList
+  // a conditional check if input is an object
   function add(pokemon){
-    pokemonList.push(pokemon);
+    if(typeof pokemon === 'object'){
+      pokemonList.push(pokemon);
+    } else {
+      return 'Input type is not valid. Only accpet objects';
+    }
   }
 
   // object with key/value pair
@@ -25,10 +30,10 @@ let pokemonRepository = (function (){
 
 // forEach loop instead of for loop
 // arrow function that takes in one parameter, item and prints out the height property of each item
-pokemonRepository.getAll().forEach(item => {
-  if(item.height >= 1.5) {
-    console.log(item.name + " (height: " + item.height + ") - Wow, that's big!");
+pokemonRepository.getAll().forEach(({height, name}) => {
+  if(height >= 1.5) {
+    console.log(name + " (height: " + height + ") - Wow, that's big!");
   } else {
-    console.log(item.name + " (height: " + item.height + ")");
+    console.log(name + " (height: " + height + ")");
   }
 });

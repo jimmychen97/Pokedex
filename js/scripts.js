@@ -21,19 +21,35 @@ let pokemonRepository = (function (){
     }
   }
 
+  function addListItem(pokemon) {
+    let pokemonList = document.querySelector('.pokemon-list');
+    let listItem = document.createElement('li');
+    let button = document.createElement('button');
+    button.innerText = pokemon.name;
+    button.classList.add('pokemon-button');
+    listItem.appendChild(button);
+    pokemonList.appendChild(listItem);
+
+    // click event to show console.log(pokemon)
+    button.addEventListener("click", () => {
+      showDetails(pokemon);
+    });
+  }
+
+  function showDetails(pokemon){
+    console.log(pokemon.name);
+  }
+
   // object with key/value pair
   return {
     getAll: getAll,
-    add: add
+    add: add,
+    addListItem: addListItem
   }
 })();
 
 // forEach loop instead of for loop
 // arrow function that takes in one parameter, item and prints out the height property of each item
-pokemonRepository.getAll().forEach(({height, name}) => {
-  if(height >= 1.5) {
-    console.log(name + " (height: " + height + ") - Wow, that's big!");
-  } else {
-    console.log(name + " (height: " + height + ")");
-  }
+pokemonRepository.getAll().forEach(pokemon => {
+  pokemonRepository.addListItem(pokemon);
 });

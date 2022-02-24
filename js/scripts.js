@@ -1,10 +1,7 @@
 // an object of pokemons wrapped in IIFE
 let pokemonRepository = (function (){
-  let pokemonList = [
-    { name: "Bulbasaur", height: 0.7, type: ["Grass", "Poison"] },
-    { name: "Ivysaur", height: 1, type: ["Grass", "Poison"] },
-    { name: "Venusaur", height: 2, type: ["Grass", "Poison"] }
-  ];
+  let pokemonList = [];
+  let apiUrl = 'https://pokeapi.co/api/v2/pokemon/?limit=150';
 
   // return all items
   function getAll(){
@@ -36,20 +33,73 @@ let pokemonRepository = (function (){
     });
   }
 
-  function showDetails(pokemon){
-    console.log(pokemon.name);
+  function loadList(){
+    showLoadingMessage();
+    return fetch(apiUrl).then(function (response) {
+      return response.json();
+    }).then(function (json){
+      json.results.forEach(function (item){
+        let pokemon = {
+          name: item.name,
+          detailsUrl: item.url
+        };
+        add(pokemon);
+      });
+      hideLoadingMessage()
+    }).catch(function (e){
+      console.error(e);
+      hideLoadingMessage()
+    })
+  }
+
+  function loadDetails(item) {
+    let url = item.detailsUrl;
+    showLoadingMessage();
+    return fetch(url).then(function (response) {
+      return response.json();
+    }).then(function (details) {
+      item.imageUrl = details.sprites.front_default;
+      item.height = details.height;
+      item.types = details.types;
+      hideLoadingMessage()
+    }).catch(function (e) {
+      console.error(e);
+      hideLoadingMessage()
+    });
+  }
+
+  function showDetails(item){
+    pokemonRepository.loadDetails(item).then(function (){
+      console.log(item);
+    });
+  }
+
+  function showLoadingMessage(){
+    let header = document.querySelector('.header');
+    let loadingMessage = document.createElement('div');
+    loadingMessage.innerText = 'Loading...';
+    loadingMessage.classList.add('loading-message');
+    header.appendChild(loadingMessage);
+  }
+
+  function hideLoadingMessage(){
+    let loadingMessage = document.querySelector('.loading-message');
+    loadingMessage.remove();
   }
 
   // object with key/value pair
   return {
     getAll: getAll,
     add: add,
-    addListItem: addListItem
+    addListItem: addListItem,
+    loadList: loadList,
+    loadDetails: loadDetails,
+    showDetails: showDetails
   }
 })();
 
-// forEach loop instead of for loop
-// arrow function that takes in one parameter, item and prints out the height property of each item
-pokemonRepository.getAll().forEach(pokemon => {
-  pokemonRepository.addListItem(pokemon);
+pokemonRepository.loadList().then(function() {
+  pokemonRepository.getAll().forEach(function(pokemon){
+    pokemonRepository.addListItem(pokemon);
+  });
 });

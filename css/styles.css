@@ -12,10 +12,14 @@ body {
     padding: 10px;
 }
 
+header {
+    display: flex;
+    align-items: center;
+}
+
 .title {
     display: inline-block;
     margin-left: 20px;
-    margin-bottom: 0;
 }
 
 .navigation-logo {

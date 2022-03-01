@@ -10,12 +10,12 @@ body {
     font-weight: var(--font-weight);
     font-size: var(--font-size);
     padding: 10px;
-    margin: 10px;
 }
 
-h1 {
+.title {
     display: inline-block;
     margin-left: 20px;
+    margin-bottom: 0;
 }
 
 .navigation-logo {
@@ -66,32 +66,32 @@ h1 {
     max-width: 700px;
   }
   
-  .modal-close {
-    float: right;
-    -webkit-appearance: none;
-    border: none;
-    border-radius: 10px;
-    color: #777;
-  }
-  
-  .modal-title {
-    margin-top: 0;
-    text-align: center;
-  }
-  
-  .modal-content {
-    margin-bottom: 0;
-    text-align: center;
-  }
+.modal-close {
+float: right;
+-webkit-appearance: none;
+border: none;
+border-radius: 10px;
+color: #777;
+}
 
-  .modal-image {
-      text-align: center;
-  }
-  
-  #modal-container {
-    display: none;
-  }
-  
-  #modal-container.is-visible {
-    display: block;
-  }
+.modal-title {
+margin-top: 0;
+text-align: center;
+}
+
+.modal-content {
+margin-bottom: 0;
+text-align: center;
+}
+
+.modal-image {
+    text-align: center;
+}
+
+#modal-container {
+display: none;
+}
+
+#modal-container.is-visible {
+display: block;
+}

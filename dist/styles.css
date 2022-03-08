@@ -1,0 +1,1 @@
+:root{--background-color:#c6c9d0;--font-weight:400;--font-size:16px}body{font-family:"Maven Pro",sans-serif;font-weight:var(--font-weight);font-size:var(--font-size);padding:10px}header{align-items:center}.title{display:inline-block;margin-left:20px}.navigation-logo{width:70px;height:auto}.pokemon-button{min-width:200px;height:50px}

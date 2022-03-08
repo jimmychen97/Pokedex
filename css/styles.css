@@ -1,101 +1,27 @@
 :root {
-    --background-color: #c6c9d0;
-    --font-weight: 400;
-    --font-size: 16px;
+  --background-color: #c6c9d0;
+  --font-weight: 400;
+  --font-size: 16px;
 }
 
 body {
-    background-color: var(--background-color);
-    font-family: 'Maven Pro', sans-serif;
-    font-weight: var(--font-weight);
-    font-size: var(--font-size);
-    padding: 10px;
+  /* background-color: var(--background-color); */
+  font-family: "Maven Pro", sans-serif;
+  font-weight: var(--font-weight);
+  font-size: var(--font-size);
+  padding: 10px;
 }
 
 header {
-    display: flex;
-    align-items: center;
+  align-items: center;
 }
 
 .title {
-    display: inline-block;
-    margin-left: 20px;
+  display: inline-block;
+  margin-left: 20px;
 }
 
 .navigation-logo {
-    width: 70px;
-    height: auto;
-}
-
-.pokemon-list {
-    display: grid;
-    list-style: none;
-    column-gap: 50px;
-    grid-template-rows: auto;
-}
-
-.pokemon-button {
-    display: inline-block;
-    font-size: 16px;
-    text-decoration: none;
-    border: none;
-    border-radius: 10px;
-    padding: 10px;
-    margin: 5px;
-}
-
-#modal-container{
-    position: fixed;
-    padding: 20px;
-    box-sizing: border-box;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.5);
-    z-index: 999; 
-    overflow: auto; 
-    display: grid;
-    text-align: center;
-}
-
-.modal {
-    margin: auto;
-    border-radius: 20px;
-    display: inline-block;
-    box-sizing: border-box;
-    background: #fff;
-    padding: 15px;
-    width: 100%;
-    max-width: 700px;
-  }
-  
-.modal-close {
-float: right;
--webkit-appearance: none;
-border: none;
-border-radius: 10px;
-color: #777;
-}
-
-.modal-title {
-margin-top: 0;
-text-align: center;
-}
-
-.modal-content {
-margin-bottom: 0;
-text-align: center;
-}
-
-.modal-image {
-    text-align: center;
-}
-
-#modal-container {
-display: none;
-}
-
-#modal-container.is-visible {
-display: block;
+  width: 70px;
+  height: auto;
 }

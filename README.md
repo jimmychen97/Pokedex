@@ -7,4 +7,4 @@ A small web application with HTML, CSS and JavaScript that utilitzes external AP
 - HTML/CSS/JavaScript
 - jQuery
 - Bootstrap 5
-- API: https://pokeapi.co/api/v2/pokemon/?limit=150
+- API: https://pokeapi.co/api/v2/pokemon/?limit=898

@@ -5,7 +5,6 @@
 }
 
 body {
-  /* background-color: var(--background-color); */
   font-family: "Maven Pro", sans-serif;
   font-weight: var(--font-weight);
   font-size: var(--font-size);
@@ -24,4 +23,9 @@ header {
 .navigation-logo {
   width: 70px;
   height: auto;
+}
+
+.pokemon-button{
+    min-width: 200px;
+    height: 50px;
 }

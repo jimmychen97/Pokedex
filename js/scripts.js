@@ -24,14 +24,14 @@ let pokemonRepository = (function () {
     let button = document.createElement("button");
 
     button.innerText = capitalize(pokemon.name);
-    button.classList.add("btn", "btn-outline-dark", "pokemon-button");
+    button.classList.add("btn", "btn-outline-dark", "btn-lg", "pokemon-button");
 
     // modal linking
     button.setAttribute("data-toggle", "modal");
     button.setAttribute("data-target", "#pokemonModal");
 
     listItem.appendChild(button);
-    listItem.classList.add("list-group-item");
+    listItem.classList.add("list-group-item", "border-0");
     pokemonList.appendChild(listItem);
 
     // click event to show modal

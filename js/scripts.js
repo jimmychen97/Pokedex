@@ -26,12 +26,12 @@ let pokemonRepository = (function () {
     button.innerText = capitalize(pokemon.name);
     button.classList.add("btn", "btn-outline-dark", "pokemon-button");
 
-    // for modal
+    // modal linking
     button.setAttribute("data-toggle", "modal");
     button.setAttribute("data-target", "#pokemonModal");
 
     listItem.appendChild(button);
-    listItem.classList.add('list-group-item');
+    listItem.classList.add("list-group-item");
     pokemonList.appendChild(listItem);
 
     // click event to show modal
@@ -72,7 +72,8 @@ let pokemonRepository = (function () {
       .then(function (details) {
         item.imageUrl = details.sprites.front_default;
         item.height = details.height;
-        item.types = details.types;
+        item.weight = details.weight;
+        item.types = getPokemonTypes(details);
         // hideLoadingMessage();
       })
       .catch(function (e) {
@@ -101,21 +102,25 @@ let pokemonRepository = (function () {
     loadingMessage.remove();
   }
 
-  function showModal(item){
+  function showModal(item) {
     let modalBody = $(".modal-body");
     let modalTitle = $(".modal-title");
     modalTitle.empty();
     modalBody.empty();
 
-    let nameElement = $("<h1>"+capitalize(item.name)+"</h1>");
+    let nameElement = $("<h1>" + capitalize(item.name) + "</h1>");
     let imageElement = $('<img class="modal-img" style="width:50%">');
     imageElement.attr("src", item.imageUrl);
 
-    let heightElement = $("<p>"+"Height: "+item.height+"</p>");
+    let heightElement = $("<p>" + "Height: " + (item.height/10) + " m</p>");
+    let weightElement = $("<p>" + "Weight: " + (item.weight/10) + " kgs</p>");
+    let typeElement = $("<p>" + "Types: " + item.types + "</p>");
 
     modalTitle.append(nameElement);
     modalBody.append(imageElement);
     modalBody.append(heightElement);
+    modalBody.append(weightElement);
+    modalBody.append(typeElement);
   }
   // object with key/value pair
   return {
@@ -135,7 +140,14 @@ pokemonRepository.loadList().then(function () {
   });
 });
 
-function capitalize(s)
-{
-    return s[0].toUpperCase() + s.slice(1);
+function capitalize(s) {
+  return s[0].toUpperCase() + s.slice(1);
+}
+
+function getPokemonTypes(pokemon){
+  if(Object.keys(pokemon.types).length > 1){
+    return [capitalize(pokemon.types[0].type.name), capitalize(pokemon.types[1].type.name)];
+  } else {
+    return capitalize(pokemon.types[0].type.name);
+  }
 }
